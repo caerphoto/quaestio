@@ -1,10 +1,12 @@
 <header>
   <a class="logo" href="/">Quaestio</a>
   <% if user_signed_in? %>
-    <a class="button account-action" href="<%= edit_user_registration_path %>">Account</a>
-    <a class="button account-action" href="<%= destroy_user_session_path %>">Sign Out</a>
+    <a class="button account-action" href="<%= edit_user_registration_path %>">Account&hellip;</a>
+    <form action="<%= destroy_user_session_path %>" method="DELETE">
+      <button type="submit" class="account-action">Sign Out</button>
+    </form>
   <% else %>
-    <a class="button account-action" href="<%= new_user_session_path %>">Sign In</a>
-    <a class="button account-action" href="<%= new_user_registration_path %>">Create Account</a>
+    <a class="account-action" href="<%= new_user_session_path %>">Sign In&hellip;</a>
+    <a class="button account-action" href="<%= new_user_registration_path %>">Create Account&hellip;</a>
   <% end %>
 </header>

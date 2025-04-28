@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[ show edit update destroy start_verification verify ]
 
   # GET /users or /users.json
   def index
@@ -57,6 +57,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def start_verification
+  end
+
+  def verify
+    respond_to do |format|
+      if [0, 1].include?(verification_param)
+        @user.roles.add(:lawyer)
+        if @user.save
+          format.html { redirect_to edit_user_registration_path(@user), notice: "You are now verified as a lawyer." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      else
+        flash[:error] = "That verification method is not acceptable for legal reasons"
+        format.html { render :start_verification, status: 451 } # "Unavailable For Legal Reasons"
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -66,5 +88,9 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.expect(user: [ :name, :roles_mask ])
+    end
+
+    def verification_param
+      params.expect(:verification_method).to_i
     end
 end

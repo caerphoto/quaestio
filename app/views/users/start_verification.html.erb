@@ -1,0 +1,24 @@
+<% verification_methods = [[0, "Trust me bro"], [1, "Pinky swear"], [2, "Do you know who I am?!"]] %>
+
+<h2>Verify Yourself</h2>
+
+<% flash.each do |name, msg| -%>
+<%= content_tag :p, msg, class: "flash #{name}" %>
+<% end -%>
+
+<%= form_for(@user, url: verify_user_path(@user), method: "POST", html: { class: "account-action" }) do |f| %>
+  <div class="field">
+    <%= f.label "Verification method:" %><br>
+    <% verification_methods.each do |m| %>
+      <label>
+        <input type="radio" name="verification_method" value="<%= m[0] %>">
+        <%= m[1] %>
+      </label>
+      <br>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Verify" %>
+  </div>
+<% end %>

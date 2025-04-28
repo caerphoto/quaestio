@@ -1,3 +1,3 @@
-form.account-action label+em {
-  display:block;
+form.account-action label {
+  display: inline;
 }

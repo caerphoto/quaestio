@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   resources :payments
   resources :answers
   resources :questions
-  resources :users
+  resources :users do
+    member do
+      get "start_verification"
+      post "verify"
+    end
+  end
   resources :categories
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
