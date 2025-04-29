@@ -11,7 +11,7 @@
     <ul class="answers approved">
       <% question.approved_answers.each do |a| %>
         <li>
-          <p>Answer by <strong><%= a.user_name %></strong></p>
+          <p>Answer by <strong><%= a.user.name %></strong></p>
           <p><%= a.body %></p>
         </li>
       <% end %>
@@ -23,11 +23,12 @@
     <ul class="answers proposed">
       <% question.proposed_answers.each do |a| %>
         <li>
-          <p>Answer by <strong><%= a.user_name %></strong></p>
-          <p>Proposed fee: <strong>£<%= a.payment_amount %></strong></p>
-          <div class="answer-actions">
-
-          </div>
+          <p>Answer by <strong><%= a.user.name %></strong></p>
+          <p>Proposed fee: <strong>£<%= a.payment.amount %></strong></p>
+          <%= form_with(model: a.payment) do |form| %>
+            <%= form.hidden_field :approved, value: true %>
+            <%= form.submit %>
+          <% end %>
         </li>
       <% end %>
     </ul>

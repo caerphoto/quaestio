@@ -2,20 +2,13 @@ class Question < ApplicationRecord
   belongs_to :user, optional: true # user accounts can be deleted, leaving anonymous questions
   has_one :category
   has_many :answers
+  has_many :payments, through: :answers
 
   def approved_answers
-    answers
-      .joins(:payment)
-      .joins(:user)
-      .select("answers.body, users.name AS user_name")
-      .where("payment.approved" => true)
+    payments.where(approved: true).map { |p| p.answer }
   end
 
   def proposed_answers
-    answers
-      .joins(:payment)
-      .joins(:user)
-      .select("payment.amount AS payment_amount, users.name as user_name")
-      .where("payment.approved" => false)
+    payments.where(approved: false).map { |p| p.answer }
   end
 end
