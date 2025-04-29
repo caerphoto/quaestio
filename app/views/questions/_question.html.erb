@@ -1,3 +1,5 @@
+<% user_id = user_signed_in? ? current_user.id : nil %>
+
 <li id="<%= dom_id question %>" class="<%= status_class(question) %>">
   <h4><%= question.title %></h4>
 
@@ -5,14 +7,15 @@
     <%= question.body %>
   </p>
 
-  <% if user_signed_in? %>
-    <% if current_user.can_answer?(question) %>
-      <%= link_to "Answer this question", new_answer_path(question_id: question.id) %>
-    <% end %>
-  <% else %>
-    <p>
+  <% if user_id != question.user_id %>
+    <p class="question-author">
       <strong>Asked by:</strong> <%= question.user.name %>
     </p>
   <% end %>
 
+  <% if user_signed_in? && current_user.can_answer?(question) %>
+    <div class="question-actions">
+      <%= link_to "Answer this question", new_answer_path(question_id: question.id), class: "button" %>
+    </div>
+  <% end %>
 </li>

@@ -1,22 +1,23 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Questions" %>
-
-<% if user_signed_in? %>
-  <h1>Your Questions</h1>
-<% else %>
-  <h1>Latest Questions From All Users</h1>
+<% if notice.present? %>
+  <p class="notice"><%= notice %></p>
 <% end %>
 
-<div id="questions">
+<% content_for :title, "Your Questions" %>
+
+<h1>Your Questions</h1>
+
+<% if user_signed_in? %>
+<p>
+  <%= link_to "New Question…", new_question_path, class: "button" %>
+</p>
+
+<% end %>
+<ul id="questions">
   <% @questions.each do |question| %>
     <%= render question %>
-    <p>
-      <%= link_to "Show this question", question %>
-    </p>
   <% end %>
-</div>
+</ul>
 
-<% if user_signed_in? %>
-  <%= link_to "New question", new_question_path %>
-<% end %>
+<p class="navigation">
+  <%= link_to "← Return to home page", root_path %>
+</p>

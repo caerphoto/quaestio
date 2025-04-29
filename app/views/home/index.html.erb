@@ -1,0 +1,24 @@
+<% if notice.present? %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<% content_for :title, "Latest Questions" %>
+
+<h1>Latest Questions</h1>
+
+<% if user_signed_in? %>
+  <p id="home-question-actions">
+    <%= link_to "Your questions", questions_path %>
+    <%= link_to "New Question…", new_question_path, class: "button" %>
+  </p>
+<% end %>
+
+<% if user_signed_in? && current_user.has_role?(:lawyer) %>
+<p>Only the users who asked these questions can see answers provided by other lawyers, however you are free to provide your own answers.</p>
+<% end %>
+<ul id="questions">
+  <% @questions.each do |question| %>
+    <%= render question %>
+  <% end %>
+</ul>
+

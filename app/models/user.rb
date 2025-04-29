@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def can_answer?(question)
-    has_role?(:lawyer) && id != question.id
+    has_role?(:lawyer) && id != question.user_id && question.open
   end
 
   private

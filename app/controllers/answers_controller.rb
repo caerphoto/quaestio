@@ -13,6 +13,7 @@ class AnswersController < ApplicationController
   # GET /answers/new
   def new
     @answer = Answer.new
+    @question = Question.find(question_param)
   end
 
   # GET /answers/1/edit
@@ -22,10 +23,12 @@ class AnswersController < ApplicationController
   # POST /answers or /answers.json
   def create
     @answer = Answer.new(answer_params)
+    @question = Question.find(@answer.question_id)
+    @answer.payment = Payment.create(amount: fee_param)
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: "Answer was successfully created." }
+        format.html { redirect_to @question, notice: "Answer and payment request was successfully submitted." }
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +68,14 @@ class AnswersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def answer_params
-      params.expect(answer: [ :body, :user_id, :question_id, :payment_id ])
+      params.expect(answer: [ :body, :user_id, :question_id ])
+    end
+
+    def fee_param
+      params.expect(:proposed_fee)
+    end
+
+    def question_param
+      params.expect(:question_id)
     end
 end

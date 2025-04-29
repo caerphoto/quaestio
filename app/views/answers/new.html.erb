@@ -1,11 +1,15 @@
-<% content_for :title, "New answer" %>
+<% content_for :title, "Answering question" %>
 
-<h1>New answer</h1>
+<h1>Answering question</h1>
 
-<%= render "form", answer: @answer %>
-
-<br>
-
-<div>
-  <%= link_to "Back to answers", answers_path %>
+<div id="answering-question">
+  <span id="answer-question-id">ID: <%= @question.id %></span>
+  <h4><%= @question.title %></h2>
+  <p><%= @question.body %></p>
 </div>
+
+<%= render "form", answer: @answer, question: @question %>
+
+<p class="navigation">
+  <%= link_to "← Return to home page", root_path %>
+</p>

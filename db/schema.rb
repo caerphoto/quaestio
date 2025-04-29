@@ -31,8 +31,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_220551) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer "amount"
-    t.boolean "approved"
+    t.integer "amount", null: false
+    t.boolean "approved", null: false, default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,7 +40,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_220551) do
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.boolean "open"
+    t.boolean "open", default: true
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

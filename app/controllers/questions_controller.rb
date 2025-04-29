@@ -3,7 +3,11 @@ class QuestionsController < ApplicationController
 
   # GET /questions or /questions.json
   def index
-    @questions = Question.all
+    if user_signed_in?
+      @questions = Question.where(user_id: current_user.id)
+    else
+      @questions = Question.all
+    end
   end
 
   # GET /questions/1 or /questions/1.json

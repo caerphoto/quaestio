@@ -1,0 +1,38 @@
+#questions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#questions li,
+#answering-question {
+    border: 1px solid var(--border);
+    border-radius: var(--standard-border-radius);
+    padding: 0.5em 1em;
+    position: relative;
+    margin-bottom: 0.5em;
+}
+
+#questions li.closed {
+    color: var(--disabled);
+}
+
+#questions li.own-question {
+    border-color: var(--accent);
+}
+
+#answering-question h4,
+#questions li h4 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+#answering-question p,
+#questions li p {
+    margin: 0 0 1rem;
+}
+
+#questions li .question-actions {
+    display: flex;
+    justify-content: flex-end;
+}

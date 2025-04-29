@@ -7,6 +7,8 @@ module QuestionsHelper
       text += " closed"
     end
 
+    text += " own-question" if user_signed_in? && current_user.id == question.user_id
+
     text += " answered" unless question.answers.empty?
     text
   end

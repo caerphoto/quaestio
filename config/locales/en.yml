@@ -29,3 +29,9 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    submit:
+      answer:
+        create: "Submit Answer"
+      question:
+        create: "Submit Question"
