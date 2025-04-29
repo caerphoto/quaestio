@@ -16,9 +16,9 @@
 <% if user_signed_in? && current_user.has_role?(:lawyer) %>
 <p>Only the users who asked these questions can see answers provided by other lawyers, however you are free to provide your own answers.</p>
 <% end %>
-<ul id="questions">
+<section id="questions">
   <% @questions.each do |question| %>
     <%= render partial: "question", locals: { question: question } %>
   <% end %>
-</ul>
+</section>
 

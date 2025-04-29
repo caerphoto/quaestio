@@ -11,6 +11,8 @@
 
 :root {
     --error: #ff1414;
+    --cancel: #b5a37a;
+    --cancel-hover: #d4c6a7;
 }
 
 .flash.error {

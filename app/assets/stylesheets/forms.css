@@ -1,8 +1,26 @@
+.answering-question + form {
+    padding: 0.5em;
+    padding-bottom: 1em;
+    border: 1px solid var(--accent);
+    border-radius: var(--standard-border-radius);
+    margin-bottom: 1em;
+}
+
+form h3 {
+    margin: 0.3em 0;
+}
+
 .form-actions {
     margin-top: 1em;
 }
 
-#proposed_fee {
+.button.cancel {
+    border-color: var(--cancel);
+    background-color: var(--cancel);
+}
+.button.cancel:hover {
+    border-color: var(--cancel-hover);
+    background-color: var(--cancel-hover);
 }
 
 textarea {

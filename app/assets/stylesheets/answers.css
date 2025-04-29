@@ -1,3 +1,19 @@
+.answers {
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+    border-top: 1px solid var(--border);
+}
+.answers .answer {
+    border: 1px solid var(--border);
+    padding: 0.5em 1em;
+    border-radius: var(--standard-border-radius);
+}
+
+.answers h4 {
+    margin: 0 0 0.5em;
+    color: var(--accent);
+}
+
 .question-id {
     position: absolute;
     top: 0.5em;

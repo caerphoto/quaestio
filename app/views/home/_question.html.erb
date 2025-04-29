@@ -4,21 +4,25 @@
 <% else %>
   <% user_answer = nil %>
 <% end %>
-<li id="<%= dom_id question %>" class="<%= status_class(question) %>">
-  <h4><%= question.title %></h4>
-  <p><%= question.body %> </p>
-  <p>Asked by: <strong><%= user_name %></strong>
-  <span class="question-id">ID: <%= question.id %></span>
-  <% if user_answer.nil? %>
-    <% if user_signed_in? && current_user.can_answer?(question) %>
-      <div class="question-actions">
-        <%= link_to "Answer question", new_answer_path(question_id: question.id), class: "button" %>
-      </div>
+<turbo-frame id="tf_<%= dom_id question %>">
+  <div id="<%= dom_id question %>" class="question <%= status_class(question) %>">
+    <span class="question-id">ID: <%= question.id %></span>
+    <h4><%= question.title %></h4>
+    <p><%= question.body %> </p>
+    <p>Category: <strong><%= question.category.name %></strong></p>
+    <p>Asked by: <strong><%= user_name %></strong></p>
+
+    <% if user_answer.nil? %>
+      <% if user_signed_in? && current_user.can_answer?(question) %>
+        <div class="question-actions">
+          <%= link_to "Answer question", new_answer_path(question_id: question.id), class: "button" %>
+        </div>
+      <% end %>
+    <% else %>
+      <details>
+        <summary>Your answer</summary>
+        <p><%= user_answer.body %></p>
+      </details>
     <% end %>
-  <% else %>
-    <details>
-      <summary>Your answer</summary>
-      <p><%= user_answer.body %></p>
-    </details>
-  <% end %>
-</li>
+  </div>
+</turbo-frame>

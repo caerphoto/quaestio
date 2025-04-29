@@ -6,4 +6,14 @@ class HomeController < ApplicationController
       @questions = Question.all
     end
   end
+
+  def question
+    @question = Question.find(question_param)
+  end
+
+  private
+
+    def question_param
+      params.expect(:id)
+    end
 end

@@ -2,13 +2,15 @@
 
 <h1>Answering question</h1>
 
-<div id="answering-question">
-  <span class="question-id">ID: <%= @question.id %></span>
-  <h4><%= @question.title %></h2>
-  <p><%= @question.body %></p>
-</div>
+<turbo-frame id="tf_<%= dom_id @question %>">
+  <div class="answering-question">
+    <span class="question-id">ID: <%= @question.id %></span>
+    <h4><%= @question.title %></h2>
+    <p><%= @question.body %></p>
+  </div>
 
-<%= render "form", answer: @answer, question: @question %>
+  <%= render "form", answer: @answer, question: @question %>
+</turbo-frame>
 
 <p class="navigation">
   <%= link_to "← Return to home page", root_path %>

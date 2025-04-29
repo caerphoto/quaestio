@@ -12,11 +12,11 @@
 </p>
 
 <% end %>
-<ul id="questions">
+<div id="questions">
   <% @questions.each do |question| %>
     <%= render question %>
   <% end %>
-</ul>
+</div>
 
 <p class="navigation">
   <%= link_to "← Return to home page", root_path %>

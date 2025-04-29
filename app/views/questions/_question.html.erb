@@ -1,36 +1,39 @@
 <% user_name = question.user.nil? ? "(anonymous)" : question.user.name %>
 
-<li id="<%= dom_id question %>" class="<%= status_class(question) %>">
-  <h4><%= question.title %></h4>
-  <p> <%= question.body %> </p>
-  <p>Asked by: <strong><%= user_name %></strong>
+<div id="<%= dom_id question %>" class="question <%= status_class(question) %>">
   <span class="question-id">ID: <%= question.id %></span>
+  <h3><%= question.title %></h3>
+  <p class="question-body"> <%= question.body %> </p>
 
-  <% if question.approved_answers.present? %>
-    <p>Approved answers:</p>
-    <ul class="answers approved">
+  <div class="answers approved">
+    <% if question.approved_answers.present? %>
+      <h4>Approved answers:</h4>
       <% question.approved_answers.each do |a| %>
-        <li>
+        <div class="answer">
           <p>Answer by <strong><%= a.user.name %></strong></p>
           <p><%= a.body %></p>
-        </li>
+        </div>
       <% end %>
-    </ul>
-  <% end %>
+    <% else %>
+      <p>No approved answers.</p>
+    <% end %>
+  </div>
 
-  <% if question.proposed_answers.present? %>
-    <p>Proposed answers:</p>
-    <ul class="answers proposed">
+  <div class="answers proposed">
+    <% if question.proposed_answers.present? %>
+      <h4>Proposed answers:</h4>
       <% question.proposed_answers.each do |a| %>
-        <li>
+        <div class="answer">
           <p>Answer by <strong><%= a.user.name %></strong></p>
           <p>Proposed fee: <strong>£<%= a.payment.amount %></strong></p>
           <%= form_with(model: a.payment) do |form| %>
             <%= form.hidden_field :approved, value: true %>
             <%= form.submit %>
           <% end %>
-        </li>
+        </div>
       <% end %>
-    </ul>
-  <% end %>
-</li>
+    <% else %>
+      <p>No proposed answers.</p>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
   belongs_to :user, optional: true # user accounts can be deleted, leaving anonymous questions
-  has_one :category
+  belongs_to :category
   has_many :answers
   has_many :payments, through: :answers
 
