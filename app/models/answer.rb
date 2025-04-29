@@ -1,5 +1,5 @@
 class Answer < ApplicationRecord
-  belongs_to :user
   belongs_to :question
-  belongs_to :payment
+  belongs_to :user
+  has_one :payment
 end

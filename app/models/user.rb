@@ -6,6 +6,10 @@ class User < ApplicationRecord
     { id: 2, name: "On my honour" }
   ].freeze
 
+  has_many :questions
+  has_many :answers
+  has_many :payments
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include RoleModel
