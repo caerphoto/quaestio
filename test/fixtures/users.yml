@@ -2,8 +2,10 @@
 
 one:
   name: MyString
-  roles_mask: 1
+  email: "test1@domain.tld"
+  roles_mask: 0
 
 two:
   name: MyString
+  email: "test2@domain.tld"
   roles_mask: 1

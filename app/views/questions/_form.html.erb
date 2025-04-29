@@ -1,3 +1,4 @@
+<% categories = Category.all.map { |c| [c.name, c.id] } %>
 <%= form_with(model: question) do |form| %>
   <% if question.errors.any? %>
     <div style="color: red">
@@ -12,24 +13,21 @@
   <% end %>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
+    <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :body, style: "display: block" %>
+    <%= form.label :body %>
     <%= form.textarea :body %>
   </div>
 
   <div>
-    <%= form.label :open, style: "display: block" %>
-    <%= form.checkbox :open %>
+    <%= form.label :category %>
+    <%= form.select :category_id, categories %>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
+  <%= form.hidden_field :open, value: true %>
 
   <div>
     <%= form.submit %>

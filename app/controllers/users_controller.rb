@@ -62,15 +62,10 @@ class UsersController < ApplicationController
 
   def verify
     respond_to do |format|
-      if [0, 1].include?(verification_param)
-        @user.roles.add(:lawyer)
-        if @user.save
-          format.html { redirect_to edit_user_registration_path(@user), notice: "You are now verified as a lawyer." }
-          format.json { render :show, status: :ok, location: @user }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
+      if @user.verify(verification_param)
+        @user.save
+        format.html { redirect_to edit_user_registration_path(@user), notice: "You are now verified as a lawyer." }
+        format.json { render :show, status: :ok, location: @user }
       else
         flash[:error] = "That verification method is not acceptable for legal reasons"
         format.html { render :start_verification, status: 451 } # "Unavailable For Legal Reasons"
