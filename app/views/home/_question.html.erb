@@ -4,12 +4,12 @@
 <% else %>
   <% user_answer = nil %>
 <% end %>
-<turbo-frame id="tf_<%= dom_id question %>">
+<turbo-frame id="tf_<%= dom_id question %>" refresh="morph">
   <div id="<%= dom_id question %>" class="question <%= status_class(question) %>">
     <span class="question-id">ID: <%= question.id %></span>
     <h4><%= question.title %></h4>
-    <p><%= question.body %> </p>
     <p>Category: <strong><%= question.category.name %></strong></p>
+    <p><%= question.body %> </p>
     <p>Asked by: <strong><%= user_name %></strong></p>
 
     <% if user_answer.nil? %>

@@ -2,7 +2,7 @@
 
 <h1>Answering question</h1>
 
-<turbo-frame id="tf_<%= dom_id @question %>">
+<turbo-frame id="tf_<%= dom_id @question %>" refresh="morph">
   <div class="answering-question">
     <span class="question-id">ID: <%= @question.id %></span>
     <h4><%= @question.title %></h2>

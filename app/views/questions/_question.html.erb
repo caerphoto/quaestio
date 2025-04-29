@@ -3,6 +3,7 @@
 <div id="<%= dom_id question %>" class="question <%= status_class(question) %>">
   <span class="question-id">ID: <%= question.id %></span>
   <h3><%= question.title %></h3>
+  <p>Category: <strong><%= question.category.name %></strong></p>
   <p class="question-body"> <%= question.body %> </p>
 
   <div class="answers approved">
