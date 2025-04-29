@@ -18,7 +18,7 @@
 <% end %>
 <ul id="questions">
   <% @questions.each do |question| %>
-    <%= render question %>
+    <%= render partial: "question", locals: { question: question } %>
   <% end %>
 </ul>
 

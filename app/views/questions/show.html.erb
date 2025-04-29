@@ -1,10 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
+<ul id="questions">
 <%= render @question %>
+</ul>
 
 <div>
-  <%= link_to "Edit this question", edit_question_path(@question) %> |
-  <%= link_to "Back to questions", questions_path %>
-
-  <%= button_to "Destroy this question", @question, method: :delete %>
+  <%= link_to "← Return to latest questions", root_path %>
 </div>

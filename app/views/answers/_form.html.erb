@@ -14,14 +14,14 @@
   <h3>Your response</h3>
   <div>
     <label for="proposed_fee">Proposed fee</label>
-    <input type="number" name="proposed_fee" id="proposed_fee" inputmode="decimal">
+    <input type="number" name="proposed_fee" id="proposed_fee" inputmode="decimal" autofocus="true" required="true">
   </div>
 
   <p>Your answer will not be visible to the person who asked the question until they have paid your requested fee.<p>
 
   <div>
     <%= form.label :body %>
-    <%= form.textarea :body, autofocus: true  %>
+    <%= form.textarea :body, required: true %>
   </div>
 
   <div>

@@ -1,21 +1,35 @@
-<% user_id = user_signed_in? ? current_user.id : nil %>
+<% user_name = question.user.nil? ? "(anonymous)" : question.user.name %>
 
 <li id="<%= dom_id question %>" class="<%= status_class(question) %>">
   <h4><%= question.title %></h4>
+  <p> <%= question.body %> </p>
+  <p>Asked by: <strong><%= user_name %></strong>
+  <span class="question-id">ID: <%= question.id %></span>
 
-  <p>
-    <%= question.body %>
-  </p>
-
-  <% if user_id != question.user_id %>
-    <p class="question-author">
-      <strong>Asked by:</strong> <%= question.user.name %>
-    </p>
+  <% if question.approved_answers.present? %>
+    <p>Approved answers:</p>
+    <ul class="answers approved">
+      <% question.approved_answers.each do |a| %>
+        <li>
+          <p>Answer by <strong><%= a.user_name %></strong></p>
+          <p><%= a.body %></p>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 
-  <% if user_signed_in? && current_user.can_answer?(question) %>
-    <div class="question-actions">
-      <%= link_to "Answer this question", new_answer_path(question_id: question.id), class: "button" %>
-    </div>
+  <% if question.proposed_answers.present? %>
+    <p>Proposed answers:</p>
+    <ul class="answers proposed">
+      <% question.proposed_answers.each do |a| %>
+        <li>
+          <p>Answer by <strong><%= a.user_name %></strong></p>
+          <p>Proposed fee: <strong>£<%= a.payment_amount %></strong></p>
+          <div class="answer-actions">
+
+          </div>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 </li>
