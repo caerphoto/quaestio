@@ -2,7 +2,11 @@
 
 <% content_for :title, "Questions" %>
 
-<h1>Latest Questions</h1>
+<% if user_signed_in? %>
+  <h1>Your Questions</h1>
+<% else %>
+  <h1>Latest Questions From All Users</h1>
+<% end %>
 
 <div id="questions">
   <% @questions.each do |question| %>

@@ -1,6 +1,5 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
+  id: 1
   title: MyString
   body: MyText
   open: false
@@ -8,6 +7,7 @@ one:
   category_id: 1
 
 two:
+  id: 2
   title: MyString
   body: MyText
   open: false

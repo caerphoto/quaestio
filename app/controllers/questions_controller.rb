@@ -65,6 +65,9 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.expect(question: [ :title, :body, :open, :user_id ])
+      params.expect(question: [ :title, :body, :category_id ]).merge({
+        user_id: current_user.id,
+        open: true
+      })
     end
 end

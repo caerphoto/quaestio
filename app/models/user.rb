@@ -23,6 +23,10 @@ class User < ApplicationRecord
     save!
   end
 
+  def can_answer?(question)
+    has_role?(:lawyer) && id != question.id
+  end
+
   private
 
     def valid_verification_method?(ver_id)
