@@ -16,9 +16,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_220551) do
 
   create_table "answers", force: :cascade do |t|
     t.text "body"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "question_id", null: false
-    t.bigint "payment_id", null: false
+    t.bigint "payment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["payment_id"], name: "index_answers_on_payment_id"
@@ -41,7 +41,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_220551) do
     t.string "title"
     t.text "body"
     t.boolean "open"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id", null: false

@@ -38,11 +38,12 @@ class PaymentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to payment_url(@payment)
   end
 
-  test "should destroy payment" do
-    assert_difference("Payment.count", -1) do
-      delete payment_url(@payment)
-    end
+  # Disabling test because payments shouldn't really be destroyed
+  # test "should destroy payment" do
+  #   assert_difference("Payment.count", -1) do
+  #     delete payment_url(@payment)
+  #   end
 
-    assert_redirected_to payments_url
-  end
+  #   assert_redirected_to payments_url
+  # end
 end

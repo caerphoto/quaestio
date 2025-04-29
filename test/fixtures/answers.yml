@@ -2,10 +2,10 @@ one:
   body: MyText
   user: one
   question_id: 1
-  payment: one
+  payment_id: 1
 
 two:
   body: MyText
   user: two
   question_id: 2
-  payment: two
+  payment_id: 2
