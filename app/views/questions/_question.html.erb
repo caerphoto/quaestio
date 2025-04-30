@@ -24,6 +24,7 @@
     <% if question.proposed_answers.present? %>
       <h4>Proposed answers:</h4>
       <% question.proposed_answers.each do |a| %>
+        <% next if a.user.nil? %>
         <div class="answer">
           <p>Answer by <strong><%= a.user.name %></strong></p>
           <p>Proposed fee: <strong>£<%= a.payment.amount %></strong></p>
