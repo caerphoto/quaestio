@@ -12,7 +12,7 @@
       <% question.approved_answers.each do |a| %>
         <div class="answer">
           <p>Answer by <strong><%= a.user.name %></strong></p>
-          <p><%= a.body %></p>
+          <p class="answer-body"><%= a.body %></p>
         </div>
       <% end %>
     <% else %>
