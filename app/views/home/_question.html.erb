@@ -9,7 +9,7 @@
     <span class="question-id">ID: <%= question.id %></span>
     <h4><%= question.title %></h4>
     <p>Category: <strong><%= question.category.name %></strong></p>
-    <p><%= question.body %> </p>
+    <p class="question-body"><%= question.body %> </p>
     <p>Asked by: <strong><%= user_name %></strong></p>
 
     <% if user_answer.nil? %>

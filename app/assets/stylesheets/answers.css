@@ -7,6 +7,7 @@
     border: 1px solid var(--border);
     padding: 0.5em 1em;
     border-radius: var(--standard-border-radius);
+    white-space: pre-wrap;
 }
 
 .answers h4 {
